@@ -18,9 +18,13 @@ class guestController extends Controller
                             ->orWhere('category','like','%'.$request->input('q').'%')
                 ->get();
                 return view('client.result', ['values'=>$result]);
+            } else {
+                $values = [];
+                // dd($values);
+                return view('client.result', ['values'=>$values]);
             }
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
         }
     }
 
