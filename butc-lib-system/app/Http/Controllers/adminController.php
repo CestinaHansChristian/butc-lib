@@ -15,7 +15,7 @@ use function Pest\Laravel\get;
 class adminController extends Controller
 {
     public function dashboard() {
-        $books = DB::select('SELECT * FROM books');
+        $books = DB::select('SELECT * FROM books ORDER BY title ASC');
         // dd($books);
         return view('admin.index', ['books' => $books]);
     }
@@ -130,5 +130,21 @@ class adminController extends Controller
         } catch (\Throwable $th) {
 
         }
+    }
+
+    public function filterAuthor(Request $request) {
+        $books = new Books;
+        $author = $request->input('author');
+        $category = $request->input('category');
+        $year = $request->input('year');
+        $bookAuthor = Books::where('author', 'like', '%' . $author . '%')
+            ->where('category', 'like', '%' . $category . '%')
+            ->where('year', 'like', '%' . $year . '%')
+            ->get();
+        return view('admin.index', ['books' => $bookAuthor]);
+    }
+
+    public function clearFilter() {
+        return redirect('/dashboard');
     }
 }

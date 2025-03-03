@@ -42,6 +42,12 @@ Route::delete('/dashboard/delete/{bookId}/',[adminController::class,'destroy'])-
 // register account
 Route::get('/create/account',[AuthenticateSession::class,'create'])->name('create.account');
 
+// filter by author
+Route::get('/filter/author',[adminController::class,'filterAuthor'])->name('admin.filter');
+
+// clear filter
+Route::get('/clear/filter',[adminController::class,'clearFilter'])->name('admin.clear.filter');
+
 // ->middleware(['auth', 'verified'])->name('dashboard')
 
 Route::middleware('auth')->group(function () {

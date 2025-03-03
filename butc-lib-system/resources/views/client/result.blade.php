@@ -15,10 +15,10 @@
                     {{-- add isset value --}}
                     {{-- $values->count() > 0 && $values != null --}}
                     @if ($values && $values->count() > 0)
-                        <div class="content-wrapper xl:max-h-48 bg-slate-200 p-0.5 rounded-md overflow-y-scroll space-y-2 absolute w-full top-16">
+                        <div class="content-wrapper xl:max-h-48 bg-slate-200 p-2 rounded-md overflow-y-scroll space-y-2 absolute w-full top-16">
                             {{-- card container content --}}
                             @foreach ($values as $r)
-                            <div class="card grid grid-cols-5 h-full p-2 rounded-md border-2 border-black">
+                            <div class="card grid grid-cols-5 h-full p-2 rounded-md bg-slate-300">
                                 <div class="grid-container grid grid-rows-3 col-span-4 text-xl">
                                     <div class="name-wrapper flex font-mono text-gray-600">
                                         <label for="bookTitle">
@@ -40,6 +40,12 @@
                                         </label>
                                         <div class="published-date-value indent-3 font-semibold text-gray-800">
                                             {{ $r->year }}
+                                        </div>
+                                    </div>
+                                    <div class="category-wrapper flex font-mono text-gray-600">
+                                        <label for="bookCategory">Category:</label>
+                                        <div class="category-value indent-3 font-semibold text-gray-800">
+                                            {{ $r->category }}
                                         </div>
                                     </div>
                                 </div>

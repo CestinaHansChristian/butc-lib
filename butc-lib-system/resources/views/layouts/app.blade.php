@@ -27,10 +27,10 @@
                         Tabaco Campus Online Library
                     </div>
                 </div>
-                <div class="logo-wrapper mx-1 xl:pt-2 xl:pe-2">
-                    <div class="control-settings-wrapper flex xl:gap-4">
+                <div class="logo-wrapper mx-1 flex items-center">
+                    <div class="control-settings-wrapper flex gap-x-3 xl:gap-4">
                         <div class="greetings-name-wrapper flex items-center">
-                            <span class="text-white font-bold text-xl xl:text-3xl">Hello, <span class="text-sky-400 font-bold text-xl xl:text-3xl">{{ Auth::user()->name }}</span></span>
+                            <span class="text-white font-bold text-lg xl:text-3xl">Hello, <span class="text-sky-400 font-bold text-xl xl:text-3xl">{{ Auth::user()->name }}</span></span>
                         </div>
                         <form action="{{ route('logout') }}" method="post" id="form">
                             @csrf
@@ -49,7 +49,7 @@
             {{ $slot }}
         </div>
         @isset($footer_details)
-            <div class="footer-wrapper text-center">
+            <div class="footer-wrapper text-center text-xs md:text-lg py-3 md:p-0">
                 {{ $footer_details }}
             </div>
         @endisset
