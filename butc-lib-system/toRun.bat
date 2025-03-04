@@ -1,0 +1,6 @@
+@echo off
+echo Starting PHP Artisan Serve...
+start php artisan serve
+timeout /t 5 /nobreak
+echo Starting NPM Dev...
+start npm run dev

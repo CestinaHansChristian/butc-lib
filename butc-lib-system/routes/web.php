@@ -42,12 +42,14 @@ Route::delete('/dashboard/delete/{bookId}/',[adminController::class,'destroy'])-
 // register account
 Route::get('/create/account',[AuthenticateSession::class,'create'])->name('create.account');
 
-// filter by author
-Route::get('/filter/author',[adminController::class,'filterAuthor'])->name('admin.filter');
+// admin filter by author
+Route::get('dashboard/filter/author',[adminController::class,'filterAuthor'])->name('admin.filter');
 
-// clear filter
+// admin clear filter
 Route::get('/clear/filter',[adminController::class,'clearFilter'])->name('admin.clear.filter');
 
+// admin search a book
+Route::get('dashboard/search/',[adminController::class,'search'])->name('admin.search');
 // ->middleware(['auth', 'verified'])->name('dashboard')
 
 Route::middleware('auth')->group(function () {
@@ -55,11 +57,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-// route::middleware('guest')->group(function() {
-//     route::get('/login',[adminController::class,'redirectToLogin'])->name('redirectLogin');
-// });
-
 
 // for client side
 // search a book

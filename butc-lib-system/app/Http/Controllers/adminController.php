@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use phpDocumentor\Reflection\PseudoTypes\LowercaseString;
 
 use function Pest\Laravel\get;
 
@@ -51,13 +52,7 @@ class adminController extends Controller
             $book->year = $request->input('year');
             $book->category = $request->input('category');
             $book->filePath = Storage::put('public/ebooks', $request->file('file'));
-
-            // Optionally, if you need to manually update timestamps:
-            // $book->updated_at = now();
-            // $book->created_at = now();
-
             $book->save();
-
             return redirect('/dashboard');
         } catch (Exception $th) {
             dd($th); // Dump the exception message for debugging
@@ -146,5 +141,27 @@ class adminController extends Controller
 
     public function clearFilter() {
         return redirect('/dashboard');
+    }
+
+    public function search(Request $request)
+    {
+        $getAllBooks = DB::select('SELECT * FROM books ORDER BY title ASC');
+        try {
+            if($request->input('q')) {
+                $books = new Books();
+                $result = $books->where('title','like','%'.$request->input('q').'%')
+                            ->orWhere('author','like','%'.$request->input('q').'%')
+                            ->orWhere('category','like','%'.$request->input('q').'%')
+                ->get();
+                // dd($result);
+                return view('admin.search.result', ['adminSearchResult'=>$result,'books'=>$getAllBooks]);
+            } else {
+                $values = [];
+                // dd($values);
+                return view('admin.search.result', ['adminSearchResult'=>$values,'books'=>$getAllBooks]);
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

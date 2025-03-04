@@ -21,17 +21,17 @@
                 <div class="header-wrapper grid space-y-2 mx-1 xl:p-1 ">
                     <div class="bu-wrapper">
                         <a href="{{ route('home') }}">
-                            <img src="{{ url('/images/bu-logo-with-name.png') }}" alt="" class="h-10 xl:h-14">
+                            <img src="{{ url('/images/bu-logo-with-name.png') }}" alt="" class="h-8 xl:h-14">
                         </a>
                     </div>
-                    <div class="second-navbar-design xl:text-3xl text-blue-50 font-bold ">
+                    <div class="second-navbar-design text-sm xl:text-3xl text-blue-50 font-bold ">
                         Tabaco Campus Online Library
                     </div>
                 </div>
                 <div class="logo-wrapper mx-1 xl:pt-2 xl:pe-2 guest">
-                    <div class="control-settings-wrapper flex xl:gap-4">
+                    <div class="control-settings-wrapper flex gap-4">
                         <div class="butc-img-wrapper">
-                            <img src="{{ url('/images/butc_logo.jpg') }}" alt="" class="h-16 w-16 xl:h-20 xl:w-20 rounded-full">
+                            <img src="{{ url('/images/butc_logo.jpg') }}" alt="" class="hidden md:block object-contain h-16 w-16 md:h-16 md:w-16 xl:h-20 xl:w-20 rounded-full">
                         </div>
                         @isset($admin_icon)
                             <a href="{{ Auth::check() ? route('dashboard') : route('login') }}">

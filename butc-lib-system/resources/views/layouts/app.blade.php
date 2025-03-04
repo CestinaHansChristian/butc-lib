@@ -19,7 +19,7 @@
             <nav class=" py-1 bg-sky-700 flex justify-between">
                 <div class="header-wrapper grid space-y-2 mx-1 xl:p-1 ">
                     <div class="bu-wrapper">
-                        <a href="{{ route('home') }}">
+                        <a href="{{ Auth::check() ? route('dashboard') : route('home') }}">
                             <img src="{{ url('/images/bu-logo-with-name.png') }}" alt="" class="h-10 xl:h-14">
                         </a>
                     </div>
