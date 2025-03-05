@@ -2,12 +2,12 @@
     <div class="card-wrapper grid place-content-center h-screen">
         <div class="card-wrapper space-y-8">
             <div class="heading-wrapper">
-                <h1 class="font-semibold text-3xl text-gray-700 text-center uppercase leading-tight">
+                <h1 class="font-serif text-3xl text-gray-700 text-center uppercase leading-tight">
                     Update Book Information
                 </h1>
             </div>
-            <div class="form-wrapper gap-y-10  bg-slate-200 rounded-xl">
-                <form action="{{ route('admin.update.books',$id) }}" method="post" enctype="multipart/form-data" class="space-y-10 p-5 rounded-xl">
+            <div class="form-wrapper gap-y-10 bg-slate-200 rounded-xl">
+                <form action="{{ route('admin.update.books',$id) }}" method="post" enctype="multipart/form-data" class="space-y-2 p-5 rounded-xl">
                     @csrf
                     @method('patch')
                     <div class="form-input-wrapper xl:space-y-5 text-xl">
@@ -47,7 +47,6 @@
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

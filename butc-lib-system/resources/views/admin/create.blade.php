@@ -2,7 +2,7 @@
     <div class="card-wrapper grid place-content-center h-screen">
         <div class="card-wrapper space-y-8">
             <div class="heading-wrapper">
-                <h1 class="font-semibold text-3xl text-gray-700 text-center uppercase leading-tight underline underline-offset-4">
+                <h1 class="font-serif text-3xl text-gray-700 text-center uppercase">
                     Create a Book
                 </h1>
             </div>
@@ -40,7 +40,7 @@
                         <a href="{{ route('dashboard') }}" class="bg-red-500 text-center hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                             Cancel
                         </a>
-                        <button type="submit" onclick="uploadFile()" class="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded">
+                        <button type="submit" onclick="uploadFile()" class="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded outline-1 outline-sky-700">
                             Create
                         </button>
                     </div>

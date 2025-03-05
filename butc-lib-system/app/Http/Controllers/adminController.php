@@ -47,10 +47,10 @@ class adminController extends Controller
     {
         try {
             $book = new Books;
-            $book->title = $request->input('title');
-            $book->author = $request->input('author');
-            $book->year = $request->input('year');
-            $book->category = $request->input('category');
+            $book->title = ucfirst(strtolower($request->input('title')));
+            $book->author = ucfirst(strtolower($request->input('author')));
+            $book->year = ucfirst(strtolower($request->input('year')));
+            $book->category = ucfirst(strtolower($request->input('category')));
             $book->filePath = Storage::put('public/ebooks', $request->file('file'));
             $book->save();
             return redirect('/dashboard');
@@ -98,10 +98,10 @@ class adminController extends Controller
     {
         $books = new Books;
         $books = Books::findOrFail($id);
-        $books->title = $request->input('title');
-        $books->author = $request->input('author');
-        $books->year = $request->input('year');
-        $books->category = $request->input('category');
+        $books->title = ucfirst(strtolower($request->input('title')));
+        $books->author = ucfirst(strtolower($request->input('author')));
+        $books->year = ucfirst(strtolower($request->input('year')));
+        $books->category = ucfirst(strtolower($request->input('category')));
         // $books->filePath = Storage::put('public/ebooks', $request->file('file'));
         // dd($books);
         $books->save();
@@ -145,7 +145,7 @@ class adminController extends Controller
 
     public function search(Request $request)
     {
-        $getAllBooks = DB::select('SELECT * FROM books ORDER BY title ASC');
+        // $getAllBooks = DB::select('SELECT * FROM books ORDER BY title ASC');
         try {
             if($request->input('q')) {
                 $books = new Books();
@@ -154,11 +154,11 @@ class adminController extends Controller
                             ->orWhere('category','like','%'.$request->input('q').'%')
                 ->get();
                 // dd($result);
-                return view('admin.search.result', ['adminSearchResult'=>$result,'books'=>$getAllBooks]);
+                return view('admin.search.result', ['books'=>$result]);
             } else {
                 $values = [];
                 // dd($values);
-                return view('admin.search.result', ['adminSearchResult'=>$values,'books'=>$getAllBooks]);
+                return view('admin.search.result', ['books'=>$values]);
             }
         } catch (\Throwable $th) {
             throw $th;

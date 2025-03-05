@@ -3,16 +3,16 @@
         <div class="py-5">
             <div class="navbar-header relative space-y-1">
                 <form action="{{ route('admin.search') }}" method="get" class="flex mx-2">
-                    <div class="bg-sky-700 w-xl lg:w-4xl xl:w-6xl flex mx-auto overflow-hidden shadow-sm rounded-lg">
-                        <a href="{{ route('admin.create.books') }}" rel="noopener noreferrer" class="add-new-book bg-green-300 grid place-items-center w-24 xl:w-28 cursor-pointer hover:bg-green-400">
+                    <div class="bg-sky-700 w-xl lg:w-4xl flex mx-auto overflow-hidden shadow-sm rounded-lg">
+                        <a href="{{ route('admin.create.books') }}" rel="noopener noreferrer" class="add-new-book bg-green-300 grid place-items-center w-24 xl:w-28 cursor-pointer hover:bg-green-400 border-2 border-e-0 border-blue-500 rounded-lg">
                             <x-add></x-add>
                         </a>
-                        <div class="p-6 w-full flex justify-between">
+                        <div class="p-3 w-full flex justify-between">
                             <div class="search-btn-wrapper w-full xl:mx-5">
                                 <input type="text" name="q" required autocomplete="off" class="bg-slate-50 w-full rounded-lg p-2 placeholder:text-xl" placeholder="Search a book . . .">
                             </div>
                         </div>
-                        <button type="submit" class="grid place-content-center cursor-pointer bg-sky-300 w-24 xl:w-28 hover:bg-sky-500">
+                        <button type="submit" class="grid place-content-center cursor-pointer bg-sky-300 w-24 xl:w-28 hover:bg-sky-500 border-2 border-s-0 border-blue-500 rounded-lg">
                             <x-magnifying-glass></x-magnifying-glass>
                         </button>
                     </div>
