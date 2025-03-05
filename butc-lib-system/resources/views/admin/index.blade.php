@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="main-wrapper relative h-screen">
+    <div class="main-wrapper relative md:h-screen">
         <div class="py-5">
             <div class="navbar-header relative space-y-1">
                 <form action="{{ route('admin.search') }}" method="get" class="flex mx-2">
@@ -60,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <div class="main-body-container lg:container lg:mx-auto lg:h-96 w-full bg-slate-100/75 rounded-lg">
+        <div class="main-body-container lg:container lg:mx-auto lg:h-[400px] w-full bg-slate-100/75 rounded-lg">
             <div class="index-item-container hidden md:grid grid-cols-6 text-center rounded-t-lg bg-slate-300 font-bold uppercase tracking-wider text-base xl:text-xl py-4">
                 <div class="book-id-counter">
                     Book ID:
@@ -81,7 +81,7 @@
                     Option:
                 </div>
             </div>
-            <div class="content-wrapper overflow-y-scroll overflow-x-hidden h-96 md:h-80 [&::-webkit-scrollbar]:w-2
+            <div class="content-wrapper overflow-y-scroll overflow-x-hidden h-96 md:h-80 [&::-webkit-scrollbar]:w-2 
                 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-blue-400 [&::-webkit-scrollbar-thumb]:bg-blue-700 [&::-webkit-scrollbar-thumb]:rounded-xl space-y-3 p-2">
                 {{-- content card --}}
                 @foreach ($books as $book)
