@@ -17,8 +17,12 @@ class adminController extends Controller
 {
     public function dashboard() {
         $books = DB::select('SELECT * FROM books ORDER BY title ASC');
-        // dd($books);
-        return view('admin.index', ['books' => $books]);
+
+        $author = DB::select('SELECT author FROM books GROUP BY author');
+        $category = DB::select('SELECT category FROM books GROUP BY category');
+        $year = DB::select('SELECT year FROM books GROUP BY year');
+        
+        return view('admin.index', ['books' => $books, 'authors' => $author, 'categories' => $category, 'years' => $year]);
     }
 
     public function accountCreate() {
@@ -128,7 +132,6 @@ class adminController extends Controller
     }
 
     public function filterAuthor(Request $request) {
-        $books = new Books;
         $author = $request->input('author');
         $category = $request->input('category');
         $year = $request->input('year');
@@ -136,11 +139,22 @@ class adminController extends Controller
             ->where('category', 'like', '%' . $category . '%')
             ->where('year', 'like', '%' . $year . '%')
             ->get();
-        return view('admin.index', ['books' => $bookAuthor]);
+
+            $author = DB::select('SELECT author FROM books GROUP BY author');
+            $category = DB::select('SELECT category FROM books GROUP BY category');
+            $year = DB::select('SELECT year FROM books GROUP BY year');
+            // dd($author);
+        return view('admin.index', ['books' => $bookAuthor, 'authors' => $author, 'categories' => $category, 'years' => $year]);
     }
 
     public function clearFilter() {
-        return redirect('/dashboard');
+        $books = DB::select('SELECT * FROM books ORDER BY title ASC');
+
+        $author = DB::select('SELECT author FROM books GROUP BY author');
+        $category = DB::select('SELECT category FROM books GROUP BY category');
+        $year = DB::select('SELECT year FROM books GROUP BY year');
+        
+        return view('admin.index', ['books' => $books, 'authors' => $author, 'categories' => $category, 'years' => $year]);
     }
 
     public function search(Request $request)
@@ -154,11 +168,18 @@ class adminController extends Controller
                             ->orWhere('category','like','%'.$request->input('q').'%')
                 ->get();
                 // dd($result);
-                return view('admin.search.result', ['books'=>$result]);
+
+                $author = DB::select('SELECT author FROM books GROUP BY author');
+                $category = DB::select('SELECT category FROM books GROUP BY category');
+                $year = DB::select('SELECT year FROM books GROUP BY year');
+                return view('admin.search.result', ['books'=>$result, 'authors' => $author, 'categories' => $category, 'years' => $year]);
             } else {
                 $values = [];
+                $author = DB::select('SELECT author FROM books GROUP BY author');
+                $category = DB::select('SELECT category FROM books GROUP BY category');
+                $year = DB::select('SELECT year FROM books GROUP BY year');
                 // dd($values);
-                return view('admin.search.result', ['books'=>$values]);
+                return view('admin.search.result', ['books'=>$values, 'authors' => $author, 'categories' => $category, 'years' => $year]);
             }
         } catch (\Throwable $th) {
             throw $th;

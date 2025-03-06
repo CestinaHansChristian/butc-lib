@@ -26,26 +26,30 @@
                             <div class="option-list-wrapper flex gap-x-3 py-2">
                                 <select name="author" class="bg-blue-100 p-1 rounded-md">
                                     <option value="">Author</option>
-                                        @foreach ($books as $book)
-                                            <option id="author" class="" value="{{ $book->author }}">{{ $book->author }}</option>
-                                        @endforeach
+                                    @foreach ($authors as $book)
+                                        <option id="author" class="" value="{{ $book->author }}">{{ $book->author }}</option>
+                                    @endforeach
                                 </select>
                                 <select name="category" class="bg-blue-100 p-1 rounded-md">
                                     <option value="">Category</option>
-                                        @foreach ($books as $book)
-                                            <option id="author" value="{{ $book->category }}">{{ $book->category }}</option>
-                                        @endforeach
+                                        @isset($categories)
+                                            @foreach ($categories as $book)
+                                                <option id="author" value="{{ $book->category }}">{{ $book->category }}</option>
+                                            @endforeach
+                                        @endisset
                                 </select>
                                 <select name="year" class="bg-blue-100 p-1 rounded-md">
                                     <option value="">Year</option>
-                                        @foreach ($books as $book)
-                                            <option id="author" value="{{ $book->year }}">{{ $book->year }}</option>
-                                        @endforeach
-                                    </select>
+                                        @isset($years)
+                                            @foreach ($years as $book)
+                                                <option id="author" value="{{ $book->year }}">{{ $book->year }}</option>
+                                            @endforeach
+                                        @endisset
+                                </select>
                             </div>
                             <div class="btn-controller-wrapper flex place-content-center gap-x-5 md:gap-x-3">
                                 <button type="submit" class="bg-sky-700 text-white rounded-lg p-2 cursor-pointer hover:bg-sky-800">
-                                    Filter
+                                    Apply
                                 </button>
                                 <form action="{{ route('admin.clear.filter') }}" method="get">
                                     <button type="submit" class="bg-sky-700 text-white rounded-lg p-2 cursor-pointer hover:bg-sky-800">
@@ -80,77 +84,79 @@
                 </div>
             </div>
             <div class="content-wrapper overflow-y-scroll overflow-x-hidden h-96 md:h-80 [&::-webkit-scrollbar]:w-2
-                [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-blue-400 [&::-webkit-scrollbar-thumb]:bg-blue-700 [&::-webkit-scrollbar-thumb]:rounded-xl">
+                [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-blue-400 [&::-webkit-scrollbar-thumb]:bg-blue-700 [&::-webkit-scrollbar-thumb]:rounded-xl md:space-y-3 md:px-3">
                 {{-- content card --}}
                 @if (count($books) > 0)
                     @foreach ($books as $book)
-                        <div class="book-wrapper grid md:grid-cols-6 md:text-center py-3 bg-slate-200 px-3">
-                            <div class="book-number-wrapper flex md:grid">
+                        <div class="book-wrapper grid md:grid-cols-6 md:text-center py-3 bg-slate-300 px-3 rounded-xl border-2 border-slate-500">
+                            <div class="book-number-wrapper flex items-center md:grid">
                                 <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
                                     Book ID:
                                 </div>
-                                <h1 class="md:text-xl text-lg font-bold text-sky-600 bg-slate-200">
+                                <h1 class="md:text-xl text-lg font-bold text-blue-600 ">
                                     {{-- {{ $id }} --}}
                                     {{ $book->id }}
                                 </h1>
                             </div>
-                            <div class="book-title-wrapper  md:grid flex">
+                            <div class="book-title-wrapper  md:grid flex items-center">
                                 <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
                                     Title:
                                 </div>
-                                <h1 class="md:text-xl text-lg font-bold text-sky-600 bg-slate-200">
+                                <h1 class="md:text-xl text-lg font-bold text-blue-600 ">
                                     {{-- {{ $title }} --}}
                                     {{ $book->title }}
                                 </h1>
                             </div>
-                            <div class="book-author-year  md:grid flex">
+                            <div class="book-author-year  md:grid flex items-center">
                                 <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
                                     Author:
                                 </div>
-                                <h1 class="md:text-xl text-lg font-bold text-sky-600 bg-slate-200">
+                                <h1 class="md:text-xl text-lg font-bold text-blue-600 ">
                                     {{-- {{ $year }} --}}
                                     {{ $book->author }}
                                 </h1>
                             </div>
-                            <div class="book-category-warpper  md:grid flex">
+                            <div class="book-category-warpper  md:grid flex items-center">
                                 <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
                                     Category:
                                 </div>
-                                <h1 class="md:text-xl text-lg font-bold text-sky-600 bg-slate-200">
+                                <h1 class="md:text-xl text-lg font-bold text-blue-600 ">
                                     {{-- {{ $category }} --}}
                                     {{ $book->category }}
                                 </h1>
                             </div>
-                            <div class="book-year-wrapper  md:grid flex">
+                            <div class="book-year-wrapper  md:grid flex items-center">
                                 <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
                                     Year:
                                 </div>
-                                <h1 class="md:text-xl text-lg font-bold text-sky-600 bg-slate-200">
+                                <h1 class="md:text-xl text-lg font-bold text-blue-600 ">
                                     {{-- {{ $author }} --}}
                                     {{ $book->year }}
                                 </h1>
                             </div>
-                            <div class="books-options-wrapper grid grid-cols-3 gap-x-3">
-                                <div class="view-book-wrapper">
-                                    <form action="{{ route('admin.show', $book->id) }}" method="get">
-                                        <button type="submit" class="view-option-wrapper bg-sky-300 px-3 p-1 font-semibold tracking-widest w-full rounded-md cursor-pointer hover:bg-sky-400 grid place-content-center">
-                                            <x-eye-visible></x-eye-visible>
-                                        </button>
-                                    </form>
-                                </div>
-                                <div class="edit-book-wrapper "">
-                                    <a href="{{ route('admin.edit', $book->id) }}" class="view-option-wrapper bg-yellow-300 px-3 p-1 font-semibold tracking-widest rounded-md cursor-pointer grid place-content-center hover:bg-yellow-400">
-                                        <x-pencil></x-pencil>
-                                    </a>
-                                </div>
-                                <div class="download-book-wrapper ">
-                                    <form action="{{ route('admin.delete.books', $book->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="delete-option-wrapper bg-red-300 px-3 p-1 font-semibold tracking-widest w-full rounded-md cursor-pointer hover:bg-red-400 grid place-content-center">
-                                            <x-trash></x-trash>
-                                        </button>
-                                    </form>
+                            <div class="center-wrapper md:flex md:items-center">
+                                <div class="books-options-wrapper grid grid-cols-3 gap-x-3">
+                                    <div class="view-book-wrapper">
+                                        <form action="{{ route('admin.show', $book->id) }}" method="get">
+                                            <button type="submit" class="view-option-wrapper bg-sky-300 px-3 p-1 font-semibold tracking-widest w-full rounded-md cursor-pointer hover:bg-sky-400 grid place-content-center">
+                                                <x-eye-visible></x-eye-visible>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="edit-book-wrapper "">
+                                        <a href="{{ route('admin.edit', $book->id) }}" class="view-option-wrapper bg-yellow-300 px-3 p-1 font-semibold tracking-widest rounded-md cursor-pointer grid place-content-center hover:bg-yellow-400">
+                                            <x-pencil></x-pencil>
+                                        </a>
+                                    </div>
+                                    <div class="download-book-wrapper ">
+                                        <form action="{{ route('admin.delete.books', $book->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="delete-option-wrapper bg-red-300 px-3 p-1 font-semibold tracking-widest w-full rounded-md cursor-pointer hover:bg-red-400 grid place-content-center">
+                                                <x-trash></x-trash>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

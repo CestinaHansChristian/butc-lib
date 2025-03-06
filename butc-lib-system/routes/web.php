@@ -43,7 +43,7 @@ Route::delete('/dashboard/delete/{bookId}/',[adminController::class,'destroy'])-
 Route::get('/create/account',[AuthenticateSession::class,'create'])->name('create.account');
 
 // admin filter by author
-Route::get('dashboard/filter/author',[adminController::class,'filterAuthor'])->name('admin.filter');
+Route::get('dashboard/filter',[adminController::class,'filterAuthor'])->name('admin.filter');
 
 // admin clear filter
 Route::get('/clear/filter',[adminController::class,'clearFilter'])->name('admin.clear.filter');
