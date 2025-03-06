@@ -42,8 +42,8 @@
                 </div>
             </nav>
         </div>
-        <div class="img-wrapper -z-10 absolute">
-            <img src="{{ url('images/butc_bg.jpg') }}" alt="" class="object-cover h-screen w-screen blur-[2px]">
+        <div class="img-wrapper">
+            <img src="{{ url('images/butc_bg.jpg') }}" alt="" class="object-cover -z-10 absolute h-screen w-screen lg:h-screen blur-[2px]">
         </div>
         <div class="content-here-wrapper">
             {{ $slot }}

@@ -19,14 +19,14 @@
                 </form>
             </div>
             <div class="filters-wrapper text-sm flex place-content-center py-2 md:py-5">
-                <div class="wrapper grid md:flex md:gap-x-5">
+                <div class="wrapper grid mx-4 lg:flex md:gap-x-5">
                     <div class="top-label-wrapper flex items-center">
-                        <h2 class="text-xs lg:text-2xl font-mono text-gray-800">Filter by:</h2>
+                        <h2 class="text-sm lg:text-2xl font-mono text-gray-800 md:text-slate-50 md:text-2xl">Filter by:</h2>
                     </div>
                     <div class="filter-wrapper">
-                        <form action="{{ route('admin.filter') }}" method="get" class="grid md:flex md:gap-x-5">
-                            <div class="option-list-wrapper flex gap-x-3 py-2">
-                                <select name="author" class="bg-blue-100 p-1 rounded-md">
+                        <form action="{{ route('admin.filter') }}" method="get" class="grid gap-3 lg:flex lg:gap-x-5">
+                            <div class="option-list-wrapper grid lg:flex gap-3">
+                                <select name="author" class="bg-blue-100 p-1 rounded-md w-full">
                                     <option value="">Author</option>
                                         @isset($authors)
                                             @foreach ($authors as $book)
@@ -66,7 +66,7 @@
                 </div>
             </div>
         </div>
-        <div class="main-body-container lg:container lg:mx-auto lg:h-[400px] w-full bg-slate-100/75 rounded-lg">
+        <div class="main-body-container lg:container md:h-32 lg:mx-auto xl:h-[450px] w-full bg-slate-100/75 rounded-lg">
             <div class="index-item-container hidden md:grid grid-cols-6 text-center rounded-t-lg bg-slate-300 font-bold uppercase tracking-wider text-base xl:text-xl py-4">
                 <div class="book-id-counter">
                     Book ID:
@@ -87,7 +87,7 @@
                     Option:
                 </div>
             </div>
-            <div class="content-wrapper overflow-y-scroll overflow-x-hidden h-96 md:h-80 [&::-webkit-scrollbar]:w-2 
+            <div class="content-wrapper overflow-y-scroll overflow-x-hidden h-52 md:h-40 lg:h-96 [&::-webkit-scrollbar] [&::-webkit-scrollbar]:w-2 
                 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-blue-400 [&::-webkit-scrollbar-thumb]:bg-blue-700 [&::-webkit-scrollbar-thumb]:rounded-xl space-y-3 p-2">
                 {{-- content card --}}
                 @foreach ($books as $book)
@@ -141,13 +141,13 @@
                         <div class="books-options-wrapper grid grid-cols-3 gap-x-3">
                             <div class="view-book-wrapper">
                                 <form action="{{ route('admin.show', $book->id) }}" method="get">
-                                    <button type="submit" class="view-option-wrapper bg-sky-400 px-3 p-1 font-semibold tracking-widest w-full rounded-md cursor-pointer hover:bg-sky-600 grid place-content-center">
+                                    <button type="submit" class="view-option-wrapper bg-sky-400 px-3 p-4 font-semibold tracking-widest w-full rounded-md cursor-pointer hover:bg-sky-600 grid place-content-center">
                                         <x-eye-visible></x-eye-visible>
                                     </button>
                                 </form>
                             </div>
                             <div class="edit-book-wrapper "">
-                                <a href="{{ route('admin.edit', $book->id) }}" class="view-option-wrapper bg-yellow-300 px-3 p-1 font-semibold tracking-widest rounded-md cursor-pointer grid place-content-center hover:bg-yellow-400">
+                                <a href="{{ route('admin.edit', $book->id) }}" class="view-option-wrapper bg-yellow-300 px-3 p-4 font-semibold tracking-widest rounded-md cursor-pointer grid place-content-center hover:bg-yellow-400">
                                     <x-pencil></x-pencil>
                                 </a>
                             </div>
@@ -155,7 +155,7 @@
                                 <form action="{{ route('admin.delete.books', $book->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="delete-option-wrapper bg-red-300 px-3 p-1 font-semibold tracking-widest w-full rounded-md cursor-pointer hover:bg-red-400 grid place-content-center">
+                                    <button type="submit" class="delete-option-wrapper bg-red-300 px-3 p-4 font-semibold tracking-widest w-full rounded-md cursor-pointer hover:bg-red-400 grid place-content-center">
                                         <x-trash></x-trash>
                                     </button>
                                 </form>
