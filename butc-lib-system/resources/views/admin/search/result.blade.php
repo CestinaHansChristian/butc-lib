@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="main-body-container h-[760px] lg:container md:h-[700px] lg:mx-auto lg:h-[800px]  xl:h-[450px] w-full bg-slate-100/75 rounded-lg max-w-7xl">
+        <div class="main-body-container h-[550px] lg:container md:h-[700px] lg:mx-auto lg:h-[800px]  xl:h-[450px] w-full bg-slate-100/75 rounded-lg max-w-7xl">
             <div class="index-item-container hidden md:grid grid-cols-6 text-center rounded-t-lg bg-slate-300 font-bold uppercase tracking-wider text-base xl:text-xl py-4">
                 <div class="book-id-counter">
                     Book ID:
@@ -83,7 +83,7 @@
                     Option:
                 </div>
             </div>
-            <div class="content-wrapper overflow-y-scroll overflow-x-hidden h-[740px] md:h-[630px] lg:h-[740px] xl:h-[380px] [&::-webkit-scrollbar]:w-2
+            <div class="content-wrapper overflow-y-scroll overflow-x-hidden h-[550px] md:h-[630px] lg:h-[740px] xl:h-[380px] [&::-webkit-scrollbar]:w-2
                 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-blue-400 [&::-webkit-scrollbar-thumb]:bg-blue-700 [&::-webkit-scrollbar-thumb]:rounded-xl space-y-3 p-3">
                 {{-- content card --}}
                 @if (count($books) > 0)

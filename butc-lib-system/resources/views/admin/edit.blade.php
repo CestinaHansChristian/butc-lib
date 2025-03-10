@@ -38,7 +38,7 @@
                             <x-input-error class="mt-2" :messages="$errors->get('file')" />
                         </div>
                     </div>
-                    <div class="btn-controller-wrapper xl:pt-10 xl:gap-x-5 grid grid-cols-2">
+                    <div class="btn-controller-wrapper xl:pt-10 xl:gap-x-5 grid grid-cols-2 space-x-2">
                         <a href="{{ route('dashboard') }}" class="bg-red-500 hover:bg-red-700 text-center text-white font-bold py-2 px-4 rounded">
                             Cancel
                         </a>
