@@ -24,8 +24,11 @@
                             <img src="{{ url('/images/bu-logo-with-name.png') }}" alt="" class="h-8 xl:h-14">
                         </a>
                     </div>
-                    <div class="second-navbar-design text-sm xl:text-3xl text-blue-50 font-bold ">
-                        Tabaco Campus Online Library
+                    <div class="second-navbar-design text-sm xl:text-3xl text-blue-50 font-serif">
+                        Tabaco Library
+                        <span class="font-medium">
+                            Ebook
+                        </span>
                     </div>
                 </div>
                 <div class="logo-wrapper mx-1 xl:pt-2 xl:pe-2 guest">
