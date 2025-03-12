@@ -26,7 +26,7 @@
 
     <x-slot name="admin_icon">
         <div class="wrapper border-2 p-1 border-slate-50 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="h-14 w-14 lg:h-[70px] lg:w-[70px] ">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="h-14 w-14 md:h-[53px] md:w-[53px] lg:h-[70px] lg:w-[70px]">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
               </svg>
         </div>

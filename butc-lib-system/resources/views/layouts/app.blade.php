@@ -20,10 +20,10 @@
                 <div class="header-wrapper grid space-y-2 mx-1 xl:p-1 ">
                     <div class="bu-wrapper">
                         <a href="{{ Auth::check() ? route('dashboard') : route('home') }}">
-                            <img src="{{ url('/images/bu-logo-with-name.png') }}" alt="" class="h-10 xl:h-14">
+                            <img src="{{ url('/images/bu-logo-with-name.png') }}" alt="" class="h-8 xl:h-14">
                         </a>
                     </div>
-                    <div class="second-navbar-design text-sm xl:text-3xl text-blue-50 font-serif">
+                    <div class="second-navbar-design text-lg xl:text-3xl text-blue-50 font-serif">
                         Tabaco Library
                         <span class="font-medium">
                             Ebook
@@ -31,9 +31,9 @@
                     </div>
                 </div>
                 <div class="logo-wrapper mx-1 flex items-center">
-                    <div class="control-settings-wrapper flex gap-x-3 xl:gap-4">
-                        <div class="greetings-name-wrapper flex items-center">
-                            <span class="text-white font-bold text-lg xl:text-3xl">Hello, <span class="text-sky-400 font-bold text-xl xl:text-3xl">{{ Auth::user()->name }}</span></span>
+                    <div class="control-settings-wrapper flex xl:gap-4">
+                        <div class="greetings-name-wrapper flex justify-end items-center pe-1 md:pe-0">
+                            <span class="text-white font-bold text-sm xl:text-3xl">Hello, <span class="text-sky-400 font-bold text-base xl:text-3xl">{{ Auth::user()->name }}</span></span>
                         </div>
                         <form action="{{ route('logout') }}" method="post" id="form">
                             @csrf

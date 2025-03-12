@@ -24,17 +24,17 @@
                             <img src="{{ url('/images/bu-logo-with-name.png') }}" alt="" class="h-8 xl:h-14">
                         </a>
                     </div>
-                    <div class="second-navbar-design text-sm xl:text-3xl text-blue-50 font-serif">
+                    <div class="second-navbar-design text-lg xl:text-3xl text-blue-50 font-serif">
                         Tabaco Library
                         <span class="font-medium">
                             Ebook
                         </span>
                     </div>
                 </div>
-                <div class="logo-wrapper mx-1 xl:pt-2 xl:pe-2 guest">
-                    <div class="control-settings-wrapper flex gap-4">
+                <div class="logo-wrapper mx-1 xl:pt-2 xl:pe-2 flex items-center">
+                    <div class="control-settings-wrapper flex items-center flex-row gap-x-5">
                         <div class="butc-img-wrapper">
-                            <img src="{{ url('/images/butc_logo.jpg') }}" alt="" class="hidden md:block object-contain h-16 w-16 md:h-16 md:w-16 xl:h-20 xl:w-20 rounded-full">
+                            <img src="{{ url('/images/butc_logo.jpg') }}" alt="" class="hidden md:block object-contain h-16 w-16 md:h-16 md:w-16 lg:h-[70px] lg:w-[70px] xl:h-20 xl:w-20 rounded-full">
                         </div>
                         @isset($admin_icon)
                             <a href="{{ Auth::check() ? route('dashboard') : route('login') }}">
@@ -47,8 +47,22 @@
                 </div>
             </nav>
         </div>
-        <div class="img-wrapper absolute">
-            <img src="{{ url('images/butc_bg.jpg') }}" alt="" class="object-cover h-screen w-screen blur-[2px]">
+        <div class="absolute w-full h-screen overflow-hidden">
+            <div id="default-carousel" class="relative w-full h-full" data-carousel="slide">
+                <!-- Carousel items -->
+                <div class="absolute inset-0 transition-all duration-700 ease-in-out opacity-0" data-carousel-item>
+                    <img src="{{ url('images/butc_bg.jpg') }}" alt="Image 1" class="object-cover w-full h-full blur-[1px]">
+                </div>
+                <div class="absolute inset-0 transition-all duration-700 ease-in-out opacity-0" data-carousel-item>
+                    <img src="{{ url('images/scene2.jpg') }}" alt="Image 2" class="object-cover w-full h-full blur-[1px]">
+                </div>
+                <div class="absolute inset-0 transition-all duration-700 ease-in-out opacity-0" data-carousel-item>
+                    <img src="{{ url('images/inside_scene1.jpg') }}" alt="Image 2" class="object-cover w-full h-full blur-[1px]">
+                </div>
+                <div class="absolute inset-0 transition-all duration-700 ease-in-out opacity-0" data-carousel-item>
+                    <img src="{{ url('images/inside_scene2.jpg') }}" alt="Image 2" class="object-cover w-full h-full blur-[1px]">
+                </div>
+            </div>
         </div>
         <div class="content-here-wrapper">
             {{ $slot }}
@@ -59,5 +73,39 @@
             </div>
         @endisset
     </div>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('[data-carousel-item]');
+        const totalSlides = slides.length;
+    
+        // Show a specific slide
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.opacity = (i === index) ? '1' : '0';
+            });
+        }
+    
+        // Show next slide
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+    
+        // Show previous slide
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+    
+        // Auto slide every 3 seconds
+        setInterval(nextSlide, 5000);
+    
+        // Show the first slide initially
+        showSlide(currentSlide);
+    
+        // Add event listeners to buttons
+        document.querySelector('[data-carousel-next]').addEventListener('click', nextSlide);
+        document.querySelector('[data-carousel-prev]').addEventListener('click', prevSlide);
+    </script>
 </body>
 </html>

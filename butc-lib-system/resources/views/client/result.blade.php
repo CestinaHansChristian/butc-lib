@@ -15,7 +15,7 @@
                     {{-- add isset value --}}
                     {{-- $values->count() > 0 && $values != null --}}
                     @if ($values && $values->count() > 0)
-                        <div class="content-wrapper h-[300px] bg-slate-200 p-2 rounded-md overflow-y-scroll space-y-2 absolute w-full">
+                        <div class="content-wrapper max-h-[300px] bg-slate-200 p-2 rounded-md overflow-y-scroll space-y-2 absolute w-full">
                             {{-- card container content --}}
                             @foreach ($values as $r)
                             <div class="wrapper">
