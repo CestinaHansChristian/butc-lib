@@ -12,7 +12,7 @@
                     {{-- form wrapper --}}
                     <div class="form-wrapper absolute w-full rounded-xl">
                         <div class="content-wrapper h-screen grid place-content-center">
-                            <div class="inside-form-wrapper bg-gradient-to-tr from-orange-200 to-sky-300/90 p-10 rounded-lg">
+                            <div class="inside-form-wrapper bg-gradient-to-tr from-orange-200 to-sky-300/90 p-10 rounded-lg shadow-inner shadow-gray-500">
                                 <!-- Name -->
                                 <div>
                                     <x-input-label for="name" :value="__('Name')" />

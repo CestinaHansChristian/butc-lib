@@ -36,11 +36,11 @@
                             <x-input-error class="mt-2" :messages="$errors->get('file')" />
                         </div>
                     </div>
-                    <div class="btn-controller-wrapper xl:grid xl:grid-cols-2 gap-x-5">
+                    <div class="btn-controller-wrapper space-x-2 xl:grid xl:grid-cols-2 md:gap-x-5">
                         <a href="{{ route('dashboard') }}" class="bg-red-500 text-center hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                             Cancel
                         </a>
-                        <button type="submit" onclick="uploadFile()" class="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded outline-1 outline-sky-700">
+                        <button type="submit" onclick="uploadFile()" class="bg-sky-500 hover:bg-sky-700 text-white font-bold py-1.5 px-4 rounded">
                             Create
                         </button>
                     </div>

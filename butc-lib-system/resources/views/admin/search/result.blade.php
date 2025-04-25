@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="main-body-container h-52 lg:container lg:mx-auto lg:h-96 w-full bg-slate-100/75 rounded-lg max-w-7xl">
+        <div class="main-body-container h-[550px] lg:container md:h-[700px] lg:mx-auto lg:h-[800px]  xl:h-[450px] w-full bg-slate-100/75 rounded-lg max-w-7xl">
             <div class="index-item-container hidden md:grid grid-cols-6 text-center rounded-t-lg bg-slate-300 font-bold uppercase tracking-wider text-base xl:text-xl py-4">
                 <div class="book-id-counter">
                     Book ID:
@@ -83,13 +83,13 @@
                     Option:
                 </div>
             </div>
-            <div class="content-wrapper overflow-y-scroll overflow-x-hidden h-52 md:h-36 lg:h-80 [&::-webkit-scrollbar]:w-2
+            <div class="content-wrapper overflow-y-scroll overflow-x-hidden h-[550px] md:h-[630px] lg:h-[740px] xl:h-[380px] [&::-webkit-scrollbar]:w-2
                 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-blue-400 [&::-webkit-scrollbar-thumb]:bg-blue-700 [&::-webkit-scrollbar-thumb]:rounded-xl space-y-3 p-3">
                 {{-- content card --}}
                 @if (count($books) > 0)
                     @foreach ($books as $book)
                         <div class="book-wrapper grid md:grid-cols-6 md:text-center py-3 bg-slate-300 px-3 rounded-xl border-2 border-slate-500">
-                            <div class="book-number-wrapper flex items-center md:grid">
+                            <div class="book-number-wrapper flex items-center md:grid md:border-e-2 md:border-e-gray-600">
                                 <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
                                     Book ID:
                                 </div>
@@ -98,7 +98,7 @@
                                     {{ $book->id }}
                                 </h1>
                             </div>
-                            <div class="book-title-wrapper  md:grid flex items-center">
+                            <div class="book-title-wrapper  md:grid flex items-center md:border-e-2 md:border-e-gray-600">
                                 <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
                                     Title:
                                 </div>
@@ -107,7 +107,7 @@
                                     {{ $book->title }}
                                 </h1>
                             </div>
-                            <div class="book-author-year  md:grid flex items-center">
+                            <div class="book-author-year  md:grid flex items-center md:border-e-2 md:border-e-gray-600">
                                 <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
                                     Author:
                                 </div>
@@ -116,7 +116,7 @@
                                     {{ $book->author }}
                                 </h1>
                             </div>
-                            <div class="book-category-warpper  md:grid flex items-center">
+                            <div class="book-category-warpper  md:grid flex items-center md:border-e-2 md:border-e-gray-600">
                                 <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
                                     Category:
                                 </div>
@@ -125,7 +125,7 @@
                                     {{ $book->category }}
                                 </h1>
                             </div>
-                            <div class="book-year-wrapper  md:grid flex items-center">
+                            <div class="book-year-wrapper  md:grid flex items-center md:border-e-2 md:border-e-gray-600">
                                 <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
                                     Year:
                                 </div>
@@ -134,7 +134,7 @@
                                     {{ $book->year }}
                                 </h1>
                             </div>
-                            <div class="center-wrapper md:flex md:items-center">
+                            <div class="center-wrapper md:flex md:items-center md:place-content-center">
                                 <div class="books-options-wrapper grid grid-cols-3 gap-x-3">
                                     <div class="view-book-wrapper">
                                         <form action="{{ route('admin.show', $book->id) }}" method="get">

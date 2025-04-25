@@ -1,9 +1,12 @@
 <x-app-layout>
     <div class="main-wrapper relative h-screen">
+<<<<<<< HEAD
         <div class="floating-counter-wrapper fixed bottom-2 left-2">
             <x-summary-comp allBooks="{{$dispAllBooks[0]->allBooks}}" allVisitors="{{ $allVisitors[0]->visitorCount}}">
             </x-summary-comp>
         </div>
+=======
+>>>>>>> e06f4269f313e0678935d6e6fc535c270fd8740e
         <div class="py-5">
             <div class="navbar-header relative space-y-1">
                 <form action="{{ route('admin.search') }}" method="get" class="flex mx-2">
