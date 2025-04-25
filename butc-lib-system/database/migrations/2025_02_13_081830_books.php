@@ -26,6 +26,10 @@ return new class extends Migration
            $table->id()->autoIncrement()->unique();
            $table->string('category',50);
         });
+
+        Schema::create('totalVisitors',function(Blueprint $table){
+            $table->integer('visitors')->unsigned()->nullable();
+        });
     }
 
     /**

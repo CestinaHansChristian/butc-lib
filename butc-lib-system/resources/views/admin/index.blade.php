@@ -1,5 +1,9 @@
 <x-app-layout>
-    <div class="main-wrapper relative md:h-screen">
+    <div class="main-wrapper relative h-screen">
+        <div class="floating-counter-wrapper fixed bottom-2 left-2">
+            <x-summary-comp allBooks="{{$dispAllBooks[0]->allBooks}}" allVisitors="{{ $allVisitors[0]->visitorCount}}">
+            </x-summary-comp>
+        </div>
         <div class="py-5">
             <div class="navbar-header relative space-y-1">
                 <form action="{{ route('admin.search') }}" method="get" class="flex mx-2">
@@ -66,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <div class="main-body-container lg:container md:h-32 lg:mx-auto xl:h-[450px] w-full bg-slate-100/75 rounded-lg">
+        <div class="main-body-container h-[550px] lg:container md:h-[700px] lg:mx-auto lg:h-[800px]  xl:h-[450px] w-full bg-slate-100/75 rounded-lg max-w-7xl">
             <div class="index-item-container hidden md:grid grid-cols-6 text-center rounded-t-lg bg-slate-300 font-bold uppercase tracking-wider text-base xl:text-xl py-4">
                 <div class="book-id-counter">
                     Book ID:
@@ -87,83 +91,96 @@
                     Option:
                 </div>
             </div>
-            <div class="content-wrapper overflow-y-scroll overflow-x-hidden h-52 md:h-40 lg:h-96 [&::-webkit-scrollbar] [&::-webkit-scrollbar]:w-2 
-                [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-blue-400 [&::-webkit-scrollbar-thumb]:bg-blue-700 [&::-webkit-scrollbar-thumb]:rounded-xl space-y-3 p-2">
+            <div class="content-wrapper overflow-y-scroll overflow-x-hidden h-[550px]  md:h-[630px] lg:h-[740px] xl:h-[380px] [&::-webkit-scrollbar]:w-2
+                [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-blue-400 [&::-webkit-scrollbar-thumb]:bg-blue-700 [&::-webkit-scrollbar-thumb]:rounded-xl space-y-3 p-3">
                 {{-- content card --}}
-                @foreach ($books as $book)
-                <div class="book-wrapper grid md:grid-cols-6 md:text-center p-3 rounded-xl border-2 border-slate-500">
-                    <div class="book-number-wrapper flex md:grid items-center">
-                        <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
-                            Book ID:
-                        </div>
-                        <h1 class="md:text-xl text-lg font-bold text-blue-800">
-                            {{-- {{ $id }} --}}
-                            {{ $book->id }}
-                        </h1>
-                    </div>
-                    <div class="book-title-wrapper  md:grid flex items-center">
-                        <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
-                            Title:
-                        </div>
-                        <h1 class="md:text-xl text-lg font-bold text-blue-800">
-                            {{-- {{ $title }} --}}
-                            {{ $book->title }}
-                        </h1>
-                    </div>
-                    <div class="book-author-year  md:grid flex items-center">
-                        <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
-                            Author:
-                        </div>
-                        <h1 class="md:text-xl text-lg font-bold text-blue-800">
-                            {{-- {{ $year }} --}}
-                            {{ $book->author }}
-                        </h1>
-                    </div>
-                    <div class="book-category-warpper  md:grid flex items-center">
-                        <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
-                            Category:
-                        </div>
-                        <h1 class="md:text-xl text-lg font-bold text-blue-800">
-                            {{-- {{ $category }} --}}
-                            {{ $book->category }}
-                        </h1>
-                    </div>
-                    <div class="book-year-wrapper  md:grid flex items-center">
-                        <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
-                            Year:
-                        </div>
-                        <h1 class="md:text-xl text-lg font-bold text-blue-800">
-                            {{-- {{ $author }} --}}
-                            {{ $book->year }}
-                        </h1>
-                    </div>
-                    <div class="center-wrapper md:flex md:items-center">
-                        <div class="books-options-wrapper grid grid-cols-3 gap-x-3">
-                            <div class="view-book-wrapper">
-                                <form action="{{ route('admin.show', $book->id) }}" method="get">
-                                    <button type="submit" class="view-option-wrapper bg-sky-400 px-3 p-4 font-semibold tracking-widest w-full rounded-md cursor-pointer hover:bg-sky-600 grid place-content-center">
-                                        <x-eye-visible></x-eye-visible>
-                                    </button>
-                                </form>
+                @if (count($books) > 0)
+                    @foreach ($books as $book)
+                        <div class="book-wrapper grid md:grid-cols-6 md:text-center py-3 bg-slate-300 px-3 rounded-xl border-2 border-slate-500">
+                            <div class="book-number-wrapper flex items-center md:grid md:border-e-2 md:border-e-gray-600">
+                                <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
+                                    Book ID:
+                                </div>
+                                <h1 class="md:text-xl text-lg font-bold text-blue-600 ">
+                                    {{-- {{ $id }} --}}
+                                    {{ $book->id }}
+                                </h1>
                             </div>
-                            <div class="edit-book-wrapper "">
-                                <a href="{{ route('admin.edit', $book->id) }}" class="view-option-wrapper bg-yellow-300 px-3 p-4 font-semibold tracking-widest rounded-md cursor-pointer grid place-content-center hover:bg-yellow-400">
-                                    <x-pencil></x-pencil>
-                                </a>
+                            <div class="book-title-wrapper  md:grid flex items-center md:border-e-2 md:border-e-gray-600">
+                                <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
+                                    Title:
+                                </div>
+                                <h1 class="md:text-xl text-lg font-bold text-blue-600 ">
+                                    {{-- {{ $title }} --}}
+                                    {{ $book->title }}
+                                </h1>
                             </div>
-                            <div class="download-book-wrapper ">
-                                <form action="{{ route('admin.delete.books', $book->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="delete-option-wrapper bg-red-300 px-3 p-4 font-semibold tracking-widest w-full rounded-md cursor-pointer hover:bg-red-400 grid place-content-center">
-                                        <x-trash></x-trash>
-                                    </button>
-                                </form>
+                            <div class="book-author-year  md:grid flex items-center md:border-e-2 md:border-e-gray-600">
+                                <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
+                                    Author:
+                                </div>
+                                <h1 class="md:text-xl text-lg font-bold text-blue-600 ">
+                                    {{-- {{ $year }} --}}
+                                    {{ $book->author }}
+                                </h1>
+                            </div>
+                            <div class="book-category-warpper  md:grid flex items-center md:border-e-2 md:border-e-gray-600">
+                                <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
+                                    Category:
+                                </div>
+                                <h1 class="md:text-xl text-lg font-bold text-blue-600 ">
+                                    {{-- {{ $category }} --}}
+                                    {{ $book->category }}
+                                </h1>
+                            </div>
+                            <div class="book-year-wrapper  md:grid flex items-center md:border-e-2 md:border-e-gray-600">
+                                <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
+                                    Year:
+                                </div>
+                                <h1 class="md:text-xl text-lg font-bold text-blue-600 ">
+                                    {{-- {{ $author }} --}}
+                                    {{ $book->year }}
+                                </h1>
+                            </div>
+                            <div class="center-wrapper md:flex md:items-center md:place-content-center">
+                                <div class="books-options-wrapper grid grid-cols-3 gap-x-3">
+                                    <div class="view-book-wrapper">
+                                        <form action="{{ route('admin.show', $book->id) }}" method="get">
+                                            <button type="submit" class="view-option-wrapper bg-sky-300 px-3 p-4 font-semibold tracking-widest w-full rounded-md cursor-pointer hover:bg-sky-400 grid place-content-center">
+                                                <x-eye-visible></x-eye-visible>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="edit-book-wrapper "">
+                                        <a href="{{ route('admin.edit', $book->id) }}" class="view-option-wrapper bg-yellow-300 px-3 p-4 font-semibold tracking-widest rounded-md cursor-pointer grid place-content-center hover:bg-yellow-400">
+                                            <x-pencil></x-pencil>
+                                        </a>
+                                    </div>
+                                    <div class="download-book-wrapper ">
+                                        <form action="{{ route('admin.delete.books', $book->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="delete-option-wrapper bg-red-300 px-3 p-4 font-semibold tracking-widest w-full rounded-md cursor-pointer hover:bg-red-400 grid place-content-center">
+                                                <x-trash></x-trash>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    @endforeach
+                @else
+                    <div class="book-wrapper grid md:place-content-center md:text-center py-3 bg-slate-200 px-3">
+                        <div class="book-number-wrapper flex">
+                            <div class="label-wrapper-for-small-screen block md:hidden font-mono text-xl">
+                                Book ID:
+                            </div>
+                            <h1 class="md:text-xl text-lg font-bold text-sky-600 bg-slate-200 text-center">
+                                No book found
+                            </h1>
+                        </div>
                     </div>
-                </div>
-                @endforeach
+                @endif
             </div>
         </div>
         <x-slot name="footer_details">

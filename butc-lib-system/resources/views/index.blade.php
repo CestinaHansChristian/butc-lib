@@ -1,10 +1,6 @@
 <x-guest-layout>
     <div class="main-wrapper">
         <div class="butc-bg-img relative h-screen">
-            {{-- <div class="img-carousel-wrapper opacity-85 blur-[2px]">
-                <img src="{{ url('images/butc_bg.jpg') }}" alt=""
-                    class="object-cover h-screen w-screen xl:h-hscreen xl:w-full bg-cover">
-            </div> --}}
             <div class="search-btn-wrapper absolute top-0 h-full w-full grid place-items-center ">
                 <div class="wrapper ">
                     <form method="get" action="{{ route('search') }}" class="search-btn-wrapper flex xl:flex xl:w-full xl:justify-center">
@@ -17,6 +13,10 @@
                         </button>
                     </form>
                 </div>
+            </div>
+            <div class="statistics-wrapper fixed bottom-2 left-2">
+                <x-summary-comp allVisitors="{{ $allVisitors[0]->visitorCount}}">
+                </x-summary-comp>
             </div>
         </div>
     </div>

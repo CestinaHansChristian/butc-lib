@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Books;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -17,6 +18,15 @@ class guestController extends Controller
                             ->orWhere('author','like','%'.$request->input('q').'%')
                             ->orWhere('category','like','%'.$request->input('q').'%')
                 ->get();
+                
+                // visitor counter function
+                $visitorVal = DB::select('SELECT visitorCount FROM totalvisitors');
+                DB::table('totalvisitors')
+                ->where('id', 0)
+                ->update(['visitorCount'=> $visitorVal[0]->visitorCount + 1]);
+
+                // $totalVisitors = DB::select('SELECT visitorCount FROM totalvisitors');
+
                 return view('client.result', ['values'=>$result]);
             } else {
                 $values = [];
@@ -42,6 +52,15 @@ class guestController extends Controller
             }
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to load the PDF document'], 404);
+        }
+    }
+
+    public function index() {
+        try {
+            $totalVisitors = DB::select('SELECT visitorCount FROM totalvisitors');
+            return view('index',['allVisitors'=> $totalVisitors]);
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
 }

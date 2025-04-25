@@ -21,8 +21,12 @@ class adminController extends Controller
         $author = DB::select('SELECT author FROM books GROUP BY author');
         $category = DB::select('SELECT category FROM books GROUP BY category');
         $year = DB::select('SELECT year FROM books GROUP BY year');
+
+        $allBooks = DB::select('SELECT COUNT(*) as allBooks FROM books ');
+        $totalVisitors = DB::select('SELECT visitorCount FROM totalvisitors');
+        // return view('admin.index', [);
         
-        return view('admin.index', ['books' => $books, 'authors' => $author, 'categories' => $category, 'years' => $year]);
+        return view('admin.index', ['books' => $books, 'authors' => $author, 'categories' => $category, 'years' => $year, 'dispAllBooks'=>$allBooks, 'allVisitors'=> $totalVisitors]);
     }
 
     public function accountCreate() {
@@ -52,7 +56,8 @@ class adminController extends Controller
         try {
             $book = new Books;
             $book->title = ucfirst(strtolower($request->input('title')));
-            $book->author = ucfirst(strtolower($request->input('author')));
+            // $book->author = ucfirst(strtolower());
+            $book->year = strtoupper($request->input('author'));
             $book->year = ucfirst(strtolower($request->input('year')));
             $book->category = ucfirst(strtolower($request->input('category')));
             $book->filePath = Storage::put('public/ebooks', $request->file('file'));

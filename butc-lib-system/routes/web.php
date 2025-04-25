@@ -3,6 +3,7 @@
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\guestController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\reportQueryGenerator;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Support\Facades\Route;
@@ -10,9 +11,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 // homepage
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+Route::get('/', [guestController::class,'index'])->name('home');
 
 // dashboard
 Route::get('/dashboard',[adminController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
